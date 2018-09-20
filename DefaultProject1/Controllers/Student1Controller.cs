@@ -32,8 +32,8 @@ namespace DefaultProject1.Controllers
             ModelState.Clear();
             return View();
         }
-
-        /*  [HttpGet]
+        /*
+        [HttpGet]
           public IActionResult CreateAllStudent()
           {
               return View();
@@ -43,9 +43,9 @@ namespace DefaultProject1.Controllers
           [HttpPost]
           public IActionResult CreateAllStudent(Student S)
           {
-              IList<Student> CreateAllStudents = ORM.Student.ToList<Student>();
+              IList<Student> CreateAllStudent = ORM.Student.ToList<Student>();
 
-              return View(CreateAllStudents);
+              return View(CreateAllStudent);
           }
           */
 
@@ -53,10 +53,19 @@ namespace DefaultProject1.Controllers
         {
             return View(ORM.Student.ToList<Student>());
         }
-
+       
         public IActionResult Index()
         {
             return View();
         }
+
+         public IActionResult StudentDetail(int ID)
+          {
+              Student S = ORM.Student.Where(m => m.Id == ID).FirstOrDefault<Student>();
+              return View(S);
+          }
+
+
+       
     }
 }

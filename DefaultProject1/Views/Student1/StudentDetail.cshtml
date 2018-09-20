@@ -1,0 +1,70 @@
+﻿@model DefaultProject1.Models.Student
+
+@{
+    ViewData["Title"] = "StudentDetail";
+}
+
+<div>
+    <h4>Student</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Class)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Class)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Subject)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Subject)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.RollNo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.RollNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Department)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Department)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Gpa)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Gpa)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfilePicture)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProfilePicture)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cv)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cv)
+        </dd>
+    </dl>
+</div>
+
+
+
+<a href="/Student1/CreateAllStudent" class="btn btn-success"><span class="glyphicon glyphicon-list"></span> All Students</a>
