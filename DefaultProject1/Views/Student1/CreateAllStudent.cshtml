@@ -1,0 +1,87 @@
+﻿
+@{
+    ViewData["Title"] = "CreateAllStudent";
+}
+
+<h2 class="alert alert-info" ><span class="glyphicon glyphicon-picture"></span>>CreateAllStudent</h2>
+
+
+@model IEnumerable<Student>
+
+<br />
+
+<a href="/Student1/CreateStudent" class="btn btn-warning">Add New Student</a>
+<br />
+
+
+<table class="table table-bordered">
+
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Name</td>
+            <td>Class</td>
+            <td>Subject</td>
+            <td>RollNo</td>
+            <td>Department</td>
+            <td>Gpa</td>
+            <td>Email</td>
+            <td>ProfilePicture</td>
+            <td>CV</td>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @foreach (Student S in Model)
+
+        {
+
+        <tr>
+            <td>
+                @S.Id
+            </td>
+            <td>
+                @S.Name
+            </td>
+            <td>
+                @S.Class
+            </td>
+            <td>
+                @S.Subject
+            </td>
+            <td>
+                @S.RollNo
+            </td>
+            <td>
+                @S.Department
+            </td>
+            <td>
+                @S.Gpa
+            </td>
+            <td>
+                @S.Email
+            </td>
+            <td>
+                @S.ProfilePicture
+            </td>
+            <td>
+                @S.Cv
+            </td>
+           
+        </tr>
+
+        }
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+

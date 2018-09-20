@@ -33,7 +33,26 @@ namespace DefaultProject1.Controllers
             return View();
         }
 
+        /*  [HttpGet]
+          public IActionResult CreateAllStudent()
+          {
+              return View();
 
+          }
+
+          [HttpPost]
+          public IActionResult CreateAllStudent(Student S)
+          {
+              IList<Student> CreateAllStudents = ORM.Student.ToList<Student>();
+
+              return View(CreateAllStudents);
+          }
+          */
+
+        public IActionResult CreateAllStudent()
+        {
+            return View(ORM.Student.ToList<Student>());
+        }
 
         public IActionResult Index()
         {
