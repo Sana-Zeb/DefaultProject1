@@ -111,6 +111,15 @@ namespace DefaultProject1.Controllers
         }
 
 
+        public FileResult DownloadCV(string Path)
+        {
+            if (string.IsNullOrEmpty(Path))
+            {
+                ViewBag.Message = "Invalid Path";
+                return null;
+            }
+            return File(Path, new MimeSharp.Mime().Lookup(Path), DateTime.Now.ToString("ddMMyyyyhhmmss") + System.IO.Path.GetExtension(Path));
+        }
 
 
 
