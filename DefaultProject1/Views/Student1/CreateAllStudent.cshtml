@@ -3,18 +3,18 @@
     ViewData["Title"] = "CreateAllStudent";
 }
 
-<h2 class="alert alert-info" ><span class="glyphicon glyphicon-picture"></span>>CreateAllStudent</h2>
+<h2 class="alert alert-info"><span class="glyphicon glyphicon-picture"></span>>CreateAllStudent</h2>
 
 
 @model IEnumerable<Student>
 
 <br />
 
-<h1  class="alert alert-info">Total Students: @Model.Count()</h1>
+<h1 class="alert alert-info">Total Students: @Model.Count()</h1>
 <br />
 <a href="/Student1/CreateStudent" class="btn btn-warning">Add New Student</a>
 <br />
-<table class="table table-bordered" >
+<table id="mytable" name="mytable" class="table table-bordered">
 
     <thead>
         <tr>
@@ -38,44 +38,45 @@
 
         {
 
-        <tr>
-            <td>
-                @S.Id
-            </td>
-            <td>
-                @S.Name
-            </td>
-            <td>
-                @S.Class
-            </td>
-            <td>
-                @S.Subject
-            </td>
-            <td>
-                @S.RollNo
-            </td>
-            <td>
-                @S.Department
-            </td>
-            <td>
-                @S.Gpa
-            </td>
-            <td>
-                @S.Email
-            </td>
-            <td>
-                @S.ProfilePicture
-            </td>
-            <td>
-                @S.Cv
-                <a href="/Student1/DownloadCV?Path=@S.Cv" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-arrow-down"></span> Download CV</a>
-            </td>
-            <td>
-                <a href="/Student1/StudentDetail?Id=@S.Id" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-check"></span> Detail</a>
-                <a href="/Student1/DeleteStudent?Id=@S.Id" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Delete</a>
-                
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @S.Id
+                </td>
+                <td>
+                    @S.Name
+                </td>
+                <td>
+                    @S.Class
+                </td>
+                <td>
+                    @S.Subject
+                </td>
+                <td>
+                    @S.RollNo
+                </td>
+                <td>
+                    @S.Department
+                </td>
+                <td>
+                    @S.Gpa
+                </td>
+                <td>
+                    @S.Email
+                </td>
+                <td>
+                    @S.ProfilePicture
+                   @*<img id="pic" src="@S.ProfilePicture" />*@
+                </td>
+                <td>
+                    @S.Cv
+                    <a href="/Student1/DownloadCV?Path=@S.Cv" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-arrow-down"></span> Download CV</a>
+                </td>
+                <td>
+                    <a href="/Student1/StudentDetail?Id=@S.Id" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-check"></span> Detail</a>
+                    <a href="/Student1/DeleteStudent?Id=@S.Id" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+
+                </td>
+            </tr>
 
         }
     </tbody>
@@ -83,8 +84,21 @@
 
 
 
+@section xyz
+    {
+    <script>
+
+        $(function () {
+
+            $('#mytable').DataTable();
+            $('#pic').draggable();
+            
+        });
+
+    </script>
 
 
+}
 
 
 
