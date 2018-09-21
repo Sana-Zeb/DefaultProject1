@@ -16,11 +16,12 @@
     <br />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="CreateStudent">
+        <form asp-action="CreateStudent" method="Post" enctype="multipart/form-data">
+
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" placeholder="Name"/>
+                <input asp-for="Name" class="form-control" placeholder="Name" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -45,29 +46,29 @@
             </div>
             <div class="form-group">
                 <label asp-for="Gpa" class="control-label"></label>
-                <input asp-for="Gpa" class="form-control" placeholder="Gpa"/>
+                <input asp-for="Gpa" class="form-control" placeholder="Gpa" />
                 <span asp-validation-for="Gpa" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" placeholder="Email"/>
+                <input asp-for="Email" class="form-control" placeholder="Email" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ProfilePicture" class="control-label"></label>
-                <input asp-for="ProfilePicture" class="form-control" placeholder="profilePicture" />
-                <span asp-validation-for="ProfilePicture" class="text-danger"></span>
+                <input asp-for="ProfilePicture" class="form-control" placeholder="profilePicture"  type="file" id="PP" name="PP"/>
+                <span asp-validation-for="ProfilePicture"   id="PPError" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Cv" class="control-label"></label>
-                <input asp-for="Cv" class="form-control" placeholder="CV" />
-                <span asp-validation-for="Cv" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Submit" class="btn btn-default" />
-                <a href="/Student1/CreateAllStudent" class="btn btn-warning">All Students</a>
-            </div>
-        </form>
+                    <label asp-for="Cv" class="control-label"></label>
+                    <input asp-for="Cv" class="form-control" placeholder="CV" type="file" id="CVfile" name="CVfile" />
+                    <span asp-validation-for="Cv" id="CVError" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Submit" class="btn btn-default" />
+                    <a href="/Student1/CreateAllStudent" class="btn btn-warning">All Students</a>
+                </div>
+</form>
     </div>
 </div>
 

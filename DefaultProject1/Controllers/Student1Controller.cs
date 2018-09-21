@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using DefaultProject1.Models;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DefaultProject1.Controllers
@@ -11,9 +14,12 @@ namespace DefaultProject1.Controllers
     {
         private ProjectContext ORM = null;
 
-        public Student1Controller(ProjectContext ORM)
+        IHostingEnvironment _ENV = null;
+
+        public Student1Controller(ProjectContext ORM , IHostingEnvironment ENV)
         {
             this.ORM = ORM;
+            _ENV = ENV;
         }
 
         [HttpGet]
@@ -23,10 +29,26 @@ namespace DefaultProject1.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateStudent(Student S)
+        public IActionResult CreateStudent(Student S , IFormFile PP, IFormFile CVfile)
         {
-            ORM.Add(S);
+            string wwwRootPath = _ENV.WebRootPath;
+            string FTPPathForPP = wwwRootPath + "/WebData/PP/";
 
+            string UniqueName = Guid.NewGuid().ToString();
+            string FileExtension = Path.GetExtension(PP.FileName);
+
+            FileStream FS = new FileStream(FTPPathForPP + UniqueName + FileExtension, FileMode.Create);
+
+            PP.CopyTo(FS);
+            FS.Close();
+
+            S.ProfilePicture = "/WebData/PP/" + UniqueName + FileExtension;
+
+            string CVPath = "/WebData/CV/" + Guid.NewGuid().ToString() + Path.GetExtension(CVfile.FileName);
+            CVfile.CopyTo(new FileStream(wwwRootPath + CVPath, FileMode.Create));
+            S.Cv = CVPath;
+
+            ORM.Add(S);
             ORM.SaveChanges();
             ViewBag.Message = "Registration Done Successfully";
             ModelState.Clear();
