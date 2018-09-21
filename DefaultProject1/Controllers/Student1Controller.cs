@@ -59,9 +59,9 @@ namespace DefaultProject1.Controllers
             return View();
         }
 
-         public IActionResult StudentDetail(int ID)
+         public IActionResult StudentDetail(int Id)
           {
-              Student S = ORM.Student.Where(m => m.Id == ID).FirstOrDefault<Student>();
+              Student S = ORM.Student.Where(m => m.Id == Id).FirstOrDefault<Student>();
               return View(S);
           }
 
@@ -77,13 +77,19 @@ namespace DefaultProject1.Controllers
         public IActionResult EditStudent(Student S)
         {
             ORM.Student.Update(S);
+            ORM.SaveChanges();      
+            return RedirectToAction("CreateAllStudent");
+        }
+
+        public IActionResult DeleteStudent(Student S)
+        {
+            ORM.Student.Remove(S);
             ORM.SaveChanges();
-            
             return RedirectToAction("CreateAllStudent");
         }
 
 
-    
+
 
 
 
