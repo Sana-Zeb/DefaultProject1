@@ -1,0 +1,73 @@
+[HttpGet]
+        public IActionResult Edit(int RollNo)
+        {
+            Student E = _ORM.Student.Where(m => m.RollNo == RollNo).FirstOrDefault<Student>();
+            return View(E);
+        }
+        [HttpPost]
+        public IActionResult Edit(Student Ed)
+        {
+            _ORM.Student.Update(Ed);
+            _ORM.SaveChanges();
+            return RedirectToAction("List");
+        }
+Edit view?
+
+Aur...
+
+Yeh raha Edit View...
+
+@model Assignment.Models.Student
+
+<h2 class="glyphicon glyphicon-check alert alert-warning">Edit the Student Having RollNo=@Model.RollNo and Name=@Model.Name</h2>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="RollNo" />
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FatherName" class="control-label"></label>
+                <input asp-for="FatherName" class="form-control" />
+                <span asp-validation-for="FatherName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Class" class="control-label"></label>
+                <input asp-for="Class" class="form-control" />
+                <span asp-validation-for="Class" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Section" class="control-label"></label>
+                <input asp-for="Section" class="form-control" />
+                <span asp-validation-for="Section" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubjectGroup" class="control-label"></label>
+                <input asp-for="SubjectGroup" class="form-control" />
+                <span asp-validation-for="SubjectGroup" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TeacherIncharge" class="control-label"></label>
+                <input asp-for="TeacherIncharge" class="form-control" />
+                <span asp-validation-for="TeacherIncharge" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="List" class="btn btn-info">Back to List of All Students</a>
+</div>

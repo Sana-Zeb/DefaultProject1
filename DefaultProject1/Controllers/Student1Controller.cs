@@ -30,24 +30,60 @@ namespace DefaultProject1.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateStudent(Student S , IFormFile PP, IFormFile CVfile)
+        public IActionResult CreateStudent(Student S ,  IFormFile CVfile)
         {
-            string wwwRootPath = _ENV.WebRootPath;
-            string FTPPathForPP = wwwRootPath + "/WebData/PP/";
+            String CVPath = _ENV.WebRootPath + "/WebData/CV/";
+            String CVName = Guid.NewGuid().ToString();
+            String CVExtension = Path.GetExtension(CVfile.FileName);
 
-            string UniqueName = Guid.NewGuid().ToString();
-            string FileExtension = Path.GetExtension(PP.FileName);
-
-            FileStream FS = new FileStream(FTPPathForPP + UniqueName + FileExtension, FileMode.Create);
-
-            PP.CopyTo(FS);
+            FileStream FS = new FileStream(CVPath + CVName + CVExtension, FileMode.Create);
+            CVfile.CopyTo(FS);
             FS.Close();
 
-            S.ProfilePicture = "/WebData/PP/" + UniqueName + FileExtension;
+            S.Cv = "/WebData/CV/" + CVName + CVExtension;
 
-            string CVPath = "/WebData/CV/" + Guid.NewGuid().ToString() + Path.GetExtension(CVfile.FileName);
-            CVfile.CopyTo(new FileStream(wwwRootPath + CVPath, FileMode.Create));
-            S.Cv = CVPath;
+
+
+            //send Email
+
+            MailMessage sEmail = new MailMessage();
+            sEmail.From = new MailAddress("sanazeb40@yahoo.com");
+            sEmail.To.Add(new MailAddress(S.Email));
+            sEmail.CC.Add(new MailAddress("sanazeb40@yahoo.com"));
+            sEmail.Subject = "Welcome to student registration form";
+            sEmail.Body = "Respected " + S.Name + ",<br><br>" +
+                "Thanks for registering with student registration form,we welcome you to our institution" +
+                "<br><br>" +
+                "<b>Regards</b>,<br>xyz Team";
+            sEmail.IsBodyHtml = true;
+             if (!string.IsNullOrEmpty(S.Cv))
+             {
+                 sEmail.Attachments .Add(new Attachment(_ENV.WebRootPath + S.Cv));
+             }
+
+            //smtp 
+            SmtpClient oSMTP = new SmtpClient();
+            oSMTP.Host = "sanazeb40@yahoo.com";
+            oSMTP.Port = 587;
+            oSMTP.EnableSsl = true;
+            oSMTP.Credentials = new System.Net.NetworkCredential("sanazeb40@yahoo.com", "yahoo");
+
+            try
+            {
+                oSMTP.Send(sEmail);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+
+
+
+
+
+
+
 
             ORM.Add(S);
             ORM.SaveChanges();
