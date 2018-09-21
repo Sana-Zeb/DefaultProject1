@@ -10,11 +10,11 @@
 
 <br />
 
+<h1  class="alert alert-info">Total Students: @Model.Count()</h1>
+<br />
 <a href="/Student1/CreateStudent" class="btn btn-warning">Add New Student</a>
 <br />
-
-
-<table class="table table-bordered">
+<table class="table table-bordered" >
 
     <thead>
         <tr>
@@ -28,6 +28,7 @@
             <td>Email</td>
             <td>ProfilePicture</td>
             <td>CV</td>
+            <td>More Actions </td>
         </tr>
     </thead>
 
@@ -69,7 +70,7 @@
                 @S.Cv
             </td>
             <td>
-                <a href="/Student1/StudentDetail?Id=@S.Id" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-ok"></span> Detail</a>
+                <a href="/Student1/StudentDetail?Id=@S.Id" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-check"></span> Detail</a>
                 
             </td>
 

@@ -3,9 +3,12 @@
 @{
     ViewData["Title"] = "StudentDetail";
 }
+<h1 class="alert alert-success"><span class="glyphicon glyphicon-chevron-right"></span> Detail of the Student</h1>
+
+<h4>Student ID=@Model.Id  Name=@Model.Name</h4>
 
 <div>
-    <h4>Student</h4>
+    
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -14,48 +17,60 @@
         <dd>
             @Html.DisplayFor(model => model.Name)
         </dd>
+        <br/>
+
         <dt>
             @Html.DisplayNameFor(model => model.Class)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Class)
         </dd>
+        <br />
         <dt>
             @Html.DisplayNameFor(model => model.Subject)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Subject)
         </dd>
+        <br />
+
         <dt>
             @Html.DisplayNameFor(model => model.RollNo)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.RollNo)
         </dd>
+        <br />
         <dt>
             @Html.DisplayNameFor(model => model.Department)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Department)
         </dd>
+        <br />
         <dt>
             @Html.DisplayNameFor(model => model.Gpa)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Gpa)
         </dd>
+        <br />
         <dt>
             @Html.DisplayNameFor(model => model.Email)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.Email)
         </dd>
+        <br />
+
         <dt>
             @Html.DisplayNameFor(model => model.ProfilePicture)
         </dt>
         <dd>
             @Html.DisplayFor(model => model.ProfilePicture)
         </dd>
+        <br />
+
         <dt>
             @Html.DisplayNameFor(model => model.Cv)
         </dt>
@@ -68,3 +83,4 @@
 
 
 <a href="/Student1/CreateAllStudent" class="btn btn-success"><span class="glyphicon glyphicon-list"></span> All Students</a>
+<a href="/Student1/EditStudent" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span> Edit</a>
