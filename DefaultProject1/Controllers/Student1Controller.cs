@@ -55,28 +55,22 @@ namespace DefaultProject1.Controllers
             ModelState.Clear();
             return View();
         }
-        /*
-        [HttpGet]
-          public IActionResult CreateAllStudent()
-          {
-              return View();
-
-          }
-
-          [HttpPost]
-          public IActionResult CreateAllStudent(Student S)
-          {
-              IList<Student> CreateAllStudent = ORM.Student.ToList<Student>();
-
-              return View(CreateAllStudent);
-          }
-          */
-
+        
+          [HttpGet]
         public IActionResult CreateAllStudent()
         {
             return View(ORM.Student.ToList<Student>());
         }
-       
+        [HttpPost]
+        public IActionResult CreateAllStudent(string SearchByName, string SearchByRollNo, string SearchByDepartment)
+        {
+
+            IList<Student> CreateAllStudent = ORM.Student.Where(m => m.Name.Contains(SearchByName) || m.RollNo.Contains(SearchByRollNo) || m.Department.Contains(SearchByDepartment)).ToList<Student>();
+            return View(CreateAllStudent);
+           // return View(ORM.Student.ToList<Student>());
+        }
+
+
         public IActionResult Index()
         {
             return View();
