@@ -66,7 +66,7 @@ namespace DefaultProject1.Controllers
             oSMTP.Host = "sanazeb40@yahoo.com";
             oSMTP.Port = 587;
             oSMTP.EnableSsl = true;
-            oSMTP.Credentials = new System.Net.NetworkCredential("sanazeb40@yahoo.com", "yahoo");
+            oSMTP.Credentials = new System.Net.NetworkCredential("sanazeb40@yahoo.com", "khushnoodzeb");
 
             try
             {
@@ -74,16 +74,8 @@ namespace DefaultProject1.Controllers
             }
             catch (Exception ex)
             {
-
+                ViewBag.Message = "Mail has sent successfully";
             }
-
-
-
-
-
-
-
-
 
             ORM.Add(S);
             ORM.SaveChanges();
