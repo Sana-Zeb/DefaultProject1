@@ -47,9 +47,9 @@ namespace DefaultProject1.Controllers
             //send Email
 
             MailMessage sEmail = new MailMessage();
-            sEmail.From = new MailAddress("sanazeb40@yahoo.com");
+            sEmail.From = new MailAddress("sanazeb110@gmail.com");
             sEmail.To.Add(new MailAddress(S.Email));
-            sEmail.CC.Add(new MailAddress("sanazeb40@yahoo.com"));
+            sEmail.CC.Add(new MailAddress("sanazeb110@gmail.com"));
             sEmail.Subject = "Welcome to student registration form";
             sEmail.Body = "Respected " + S.Name + ",<br><br>" +
                 "Thanks for registering with student registration form,we welcome you to our institution" +
@@ -63,10 +63,10 @@ namespace DefaultProject1.Controllers
 
             //smtp 
             SmtpClient oSMTP = new SmtpClient();
-            oSMTP.Host = "sanazeb40@yahoo.com";
+            oSMTP.Host = "smtp.gmail.com";
             oSMTP.Port = 587;
             oSMTP.EnableSsl = true;
-            oSMTP.Credentials = new System.Net.NetworkCredential("sanazeb40@yahoo.com", "khushnoodzeb");
+            oSMTP.Credentials = new System.Net.NetworkCredential("sanazeb110@gmail.com", "sanazeb789");
 
             try
             {
