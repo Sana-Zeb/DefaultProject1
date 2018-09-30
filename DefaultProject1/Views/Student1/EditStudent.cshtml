@@ -9,6 +9,8 @@
     <p>Id: @Model.Id</p>
     @Html.HiddenFor(m => m.Id)
     <br />
+    <label>Id:</label>
+    <input id="Id" name="Id" value="@Model.Id" class="text-muted" />
     <label>Name:</label>
     <input id="Name" name="Name" value="@Model.Name" class="form-group" />
     <br />

@@ -125,7 +125,21 @@ namespace DefaultProject1.Controllers
             ORM.SaveChanges();      
             return RedirectToAction("CreateAllStudent");
         }
-
+        public string deletestudentajax(Student S)
+        {
+            string result = "";
+            try
+            {
+                ORM.Student.Remove(S);
+                ORM.SaveChanges();
+                result = "Yes";
+            }
+            catch (Exception ex)
+            {
+                result = "No";
+            }
+            return result;
+        }
         public IActionResult DeleteStudent(Student S)
         {
             ORM.Student.Remove(S);

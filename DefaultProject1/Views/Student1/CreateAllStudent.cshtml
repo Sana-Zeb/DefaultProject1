@@ -73,8 +73,8 @@
                 </td>
                 <td>
                     <a href="/Student1/StudentDetail?Id=@S.Id" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-check"></span> Detail</a>
-                    <a href="/Student1/DeleteStudent?Id=@S.Id" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Delete</a>
-
+                   @* <a href="/Student1/DeleteStudent?Id=@S.Id" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Delete</a>*@
+                    <a href="#" data-studentid="@S.Id" class="btn btn-danger DeleteStudent"><span class="glyphicon glyphicon-remove"></span> Delete</a>
                 </td>
             </tr>
 
@@ -92,6 +92,33 @@
 
             $('#mytable').DataTable();
             $('#pic').draggable();
+
+            $('.DeleteStudent').click(function () {
+                var clickedbutton = $(this);
+                var studentid = $(this).data("studentid");
+                $(this).text("Please wait");
+                $.ajax({
+                    url: "/student1/deletestudentajax",
+                    type: "POST",
+                    data: {
+                        Id: studentid,
+                        Email: "sanazeb110@gmail.com"
+                    },
+                    complete: function (myresult) {
+
+                        if (myresult.responseText == "Yes") {
+                            clickedbutton.parent().parent().addClass("danger");
+                            clickedbutton.parent().parent().fadeOut(3000);
+                        } else {
+                            alert("Please try again");
+                        }
+
+                        
+                    }
+                });
+
+
+            });
             
         });
 
