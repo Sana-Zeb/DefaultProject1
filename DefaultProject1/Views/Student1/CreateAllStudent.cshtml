@@ -26,7 +26,9 @@
             <td>Department</td>
             <td>Gpa</td>
             <td>Email</td>
-            <td>ProfilePicture</td>
+            <td>Phone_no</td>
+            @*<td>Date_of_birth</td>*@
+           <td>ProfilePicture</td>
             <td>CV</td>
             <td>More Actions </td>
         </tr>
@@ -38,45 +40,51 @@
 
         {
 
-            <tr>
-                <td>
-                    @S.Id
-                </td>
-                <td>
-                    @S.Name
-                </td>
-                <td>
-                    @S.Class
-                </td>
-                <td>
-                    @S.Subject
-                </td>
-                <td>
-                    @S.RollNo
-                </td>
-                <td>
-                    @S.Department
-                </td>
-                <td>
-                    @S.Gpa
-                </td>
-                <td>
-                    @S.Email
-                </td>
-                <td>
-                    @S.ProfilePicture
-                   <img id="pic" src="@S.ProfilePicture" class="img img-responsive"/>
-                </td>
-                <td>
-                    @S.Cv
-                    <a href="/Student1/DownloadCV?Path=@S.Cv" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-arrow-down"></span> Download CV</a>
-                </td>
-                <td>
-                    <a href="/Student1/StudentDetail?Id=@S.Id" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-check"></span> Detail</a>
-                   @* <a href="/Student1/DeleteStudent?Id=@S.Id" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Delete</a>*@
-                    <a href="#" data-studentid="@S.Id" class="btn btn-danger DeleteStudent"><span class="glyphicon glyphicon-remove"></span> Delete</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @S.Id
+            </td>
+            <td>
+                @S.Name
+            </td>
+            <td>
+                @S.Class
+            </td>
+            <td>
+                @S.Subject
+            </td>
+            <td>
+                @S.RollNo
+            </td>
+            <td>
+                @S.Department
+            </td>
+            <td>
+                @S.Gpa
+            </td>
+            <td>
+                @S.Email
+            </td>
+           <td>
+                @S.Phone_no
+            </td>
+           @* <td>
+                @S.Date_of_birth
+            </td>*@
+            <td>
+                @S.ProfilePicture
+                <img id="pic" src="@S.ProfilePicture" class="img img-responsive" />
+            </td>
+            <td>
+                @S.Cv
+                <a href="/Student1/DownloadCV?Path=@S.Cv" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-arrow-down"></span> Download CV</a>
+            </td>
+            <td>
+                <a href="/Student1/StudentDetail?Id=@S.Id" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-check"></span> Detail</a>
+                @* <a href="/Student1/DeleteStudent?Id=@S.Id" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Delete</a>*@
+                <a href="#" data-studentid="@S.Id" class="btn btn-danger DeleteStudent"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+            </td>
+        </tr>
 
         }
     </tbody>

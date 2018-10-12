@@ -15,5 +15,7 @@ namespace DefaultProject1.Models
         public string Email { get; set; }
         public string ProfilePicture { get; set; }
         public string Cv { get; set; }
+        public string Phone_no { get; set; }
+        public string Date_of_birth { get; set; }
     }
 }

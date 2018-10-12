@@ -55,20 +55,30 @@
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Phone_no" class="control-label"></label>
+                <input asp-for="Phone_no" class="form-control" placeholder="phoneno" />
+                <span asp-validation-for="Phone_no" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+            <label asp-for="Date_of_birth" class="control-label"></label>
+            <input asp-for="Date_of_birth" class="form-control"placeholder="date-of-birth" />
+            <span asp-validation-for="Date_of_birth" class="text-danger"></span>
+        </div>*@
+            <div class="form-group">
                 <label asp-for="ProfilePicture" class="control-label"></label>
-                <input asp-for="ProfilePicture" class="form-control" placeholder="profilePicture"  type="file" id="PP" name="PP"/>
-                <span asp-validation-for="ProfilePicture"   id="PPError" class="text-danger"></span>
+                <input asp-for="ProfilePicture" class="form-control" placeholder="profilePicture" type="file" id="PP" name="PP" />
+                <span asp-validation-for="ProfilePicture" id="PPError" class="text-danger"></span>
             </div>
             <div class="form-group">
-                    <label asp-for="Cv" class="control-label"></label>
-                    <input asp-for="Cv" class="form-control" placeholder="CV" type="file" id="CVfile" name="CVfile" />
-                    <span asp-validation-for="Cv" id="CVError" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Submit" class="btn btn-default" />
-                    <a href="/Student1/CreateAllStudent" class="btn btn-warning">All Students</a>
-                </div>
-</form>
+                <label asp-for="Cv" class="control-label"></label>
+                <input asp-for="Cv" class="form-control" placeholder="CV" type="file" id="CVfile" name="CVfile" />
+                <span asp-validation-for="Cv" id="CVError" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Submit" class="btn btn-default" />
+                <a href="/Student1/CreateAllStudent" class="btn btn-warning">All Students</a>
+            </div>
+        </form>
     </div>
 </div>
 

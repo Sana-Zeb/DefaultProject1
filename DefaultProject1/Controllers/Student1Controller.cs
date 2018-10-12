@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Net.Mail;
 using System.Threading.Tasks;
 using DefaultProject1.Models;
@@ -79,6 +80,14 @@ namespace DefaultProject1.Controllers
 
             ORM.Add(S);
             ORM.SaveChanges();
+
+             string APIURL = "http://bulksms.com.pk/api/sms.php?username=923478543050&password=4932&sender=BrandName&mobile=923177371912&message=registrationdone";
+        
+              using (var APIClient = new HttpClient())
+              {
+                  Task<HttpResponseMessage> RM = APIClient.GetAsync(APIURL);
+                  Task<string> FinalRespone = RM.Result.Content.ReadAsStringAsync();
+              }
             ViewBag.Message = "Registration Done Successfully";
             ModelState.Clear();
             return View();
@@ -92,7 +101,6 @@ namespace DefaultProject1.Controllers
         [HttpPost]
         public IActionResult CreateAllStudent(string SearchByName, string SearchByRollNo, string SearchByDepartment)
         {
-
             IList<Student> CreateAllStudent = ORM.Student.Where(m => m.Name.Contains(SearchByName) || m.RollNo.Contains(SearchByRollNo) || m.Department.Contains(SearchByDepartment)).ToList<Student>();
             return View(CreateAllStudent);
            // return View(ORM.Student.ToList<Student>());
@@ -124,6 +132,13 @@ namespace DefaultProject1.Controllers
             ORM.Student.Update(S);
             ORM.SaveChanges();      
             return RedirectToAction("CreateAllStudent");
+        }
+
+        public IActionResult DeleteStudent1(Student student)
+        {
+            ORM.Student.Remove(student);
+            ORM.SaveChanges();
+            return RedirectToAction(nameof(Student1Controller.CreateAllStudent));
         }
         public string deletestudentajax(Student S)
         {
@@ -159,8 +174,41 @@ namespace DefaultProject1.Controllers
         }
 
 
+       public string GetStudentsNames()
+        {
+            string Result = "";
+            var r = Request;
+            IList<Student> All = ORM.Student.ToList<Student>();
+            Result += "<h1 class='alert alert-success'>Total Students: " + All.Count + "</h1>";
+            
+            foreach (Student S in All)
+            {
+                Result += "<a href='/Student1/StudentDetail?Id=" + S.Id + "'><p><span class='glyphicon glyphicon-user'></span> " + S.Name + "</p></a> <a href='/student1/Deletestudent?id=" + S.Id + "'>Delete</a>";
+            }
+            return Result;
+     }
 
+        public string ShowAd()
+        {
+            string Ad = "";
+            Ad = "<img class='img img-responsive' src='http://lorempixel.com/400/200/sports/Dummy-Text/'/>";
+            return Ad;
+        }
 
+        public string showstudentdetail()
+        {
+            string tb = "";
+            var r = Request;
+            IList<Student> All = ORM.Student.ToList<Student>();
+            tb += "<h1 class='alert alert-success'>Total Students: " + All.Count + "</h1>";
+
+            foreach (Student S in All)
+            {
+                tb += "<a href='/Student1/StudentDetail?Id=" + S.Id + "'><p><span class='glyphicon glyphicon-user'></span>" + S.Phone_no + " + " + S.Email + "</p></a> <a href='/student1/StudentDetail?id=" + S.Id + "'>Detail</a>";
+            }
+
+            return tb;
+        }
 
     }
 }
