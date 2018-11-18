@@ -12,9 +12,18 @@
 
 <h1 class="alert alert-info">Total Students: @Model.Count()</h1>
 <br />
+<a href="/Student1/Login" class="btn btn-sm btn-link">LOGIN</a>
 <a href="/Student1/CreateStudent" class="btn btn-warning">Add New Student</a>
 <br />
-<table id="mytable" name="mytable" class="table table-bordered">
+<form action="/Student1/CreateAllStudent" method="post">
+    <input type="text" id="SearchByName" name="SearchByName" placeholder="SearchByName" />
+    <input type="submit" value="Search" />
+    <input type="text" id="SearchByDepartment" name="SearchByDepartment" placeholder="SearchByDepartment" />
+    <input type="submit" value="Search" />
+    <input type="text" id="SearchByRollNo" name="SearchByRollNo" placeholder="SearchByRollNo" />
+    <input type="submit" value="Search" />
+</form>
+<table id="mytable" name="mytable" class="table table-striped table-bordered">
 
     <thead>
         <tr>
@@ -73,16 +82,28 @@
             </td>*@
             <td>
                 @S.ProfilePicture
-                <img id="pic" src="@S.ProfilePicture" class="img img-responsive" />
+                <img id="pic" src="@S.ProfilePicture" class="img img-responsive"  />
             </td>
             <td>
                 @S.Cv
                 <a href="/Student1/DownloadCV?Path=@S.Cv" class="btn btn-sm btn-success"><span class="glyphicon glyphicon-arrow-down"></span> Download CV</a>
             </td>
             <td>
-                <a href="/Student1/StudentDetail?Id=@S.Id" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-check"></span> Detail</a>
-                @* <a href="/Student1/DeleteStudent?Id=@S.Id" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Delete</a>*@
-                <a href="#" data-studentid="@S.Id" class="btn btn-danger DeleteStudent"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+               @* @try
+                {
+                    @if (Context.Session.GetString("LIUID") == S.CreatedBy)
+                    {
+                   *@
+                        <a href="/Student1/StudentDetail?Id=@S.Id" class="btn btn-success btn-sm"><span class="glyphicon glyphicon-check"></span> Detail</a>
+                        @* <a href="/Student1/DeleteStudent?Id=@S.Id" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove"></span> Delete</a>*@
+                        <a href="#" data-studentid="@S.Id" class="btn btn-sm btn-danger DeleteStudent"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+                   @* }
+                }
+                catch (Exception ex)
+                {
+                    ViewBag.Message = "There is something problem";
+                }
+*@
             </td>
         </tr>
 
@@ -133,10 +154,7 @@
     </script>
 
 
-}
-
-
-
+        }
 
 
 

@@ -18,8 +18,10 @@
 }
 else
 {
+
     <ul class="nav navbar-nav navbar-right">
-        <li><a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
-        <li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+        <li><a href="/Student1/SignUp">Register</a></li>
+        <li><a href="/Student1/Login">Login</a></li>
+        <li><a asp-area="" asp-controller="Student1" asp-action="LogOut">LogOut</a></li>
     </ul>
 }

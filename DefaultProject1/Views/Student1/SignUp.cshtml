@@ -1,0 +1,66 @@
+﻿
+@model DefaultProject1.Models.LoginUser
+
+<h2 class="alert alert-warning">Please Enter the details bellow</h2>
+@if (!String.IsNullOrEmpty(ViewBag.Message))
+{
+
+    <h2> @ViewBag.Message</h2>
+}
+<hr />
+<div class="row alert alert-info">
+    <div class="col-md-4">
+        <form asp-action="SignUp" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label> First Name</label>
+                <input asp-for="FName" class="form-control" />
+                <span asp-validation-for="FName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label> Last Name</label>
+                <input asp-for="LName" class="form-control" />
+                <span asp-validation-for="LName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" type="email" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="control-label"></label>
+                <input asp-for="Password" class="form-control" type="password" id="password" name="password" placeholder="*****" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Gender" class="control-label"></label>
+                <input asp-for="Gender" type="radio" value="female" />female
+                <input asp-for="Gender" type="radio" value="male" />male
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label> Date of birth</label>
+                <input asp-for="DOB" id="datepicker" name="DOB" class="form-control" placeholder="date of birth" type="date" />
+                <span asp-validation-for="DOB" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="country" class="control-label"></label>
+                <input asp-for="country" class="form-control" />
+                <span asp-validation-for="country" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-danger" />
+                <a href="/Student1/Login" class="btn btn-warning"> Sign In</a>
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a href=" /Student1/CreateAllStudent">Back to List</a>
+</div>
+
+@section Scripts{
+    <script>$(function () {
+            $("#datepicker").datepicker();
+        });</script>
+}

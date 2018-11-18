@@ -81,7 +81,7 @@ namespace DefaultProject1.Controllers
             ORM.Add(S);
             ORM.SaveChanges();
 
-             string APIURL = "http://bulksms.com.pk/api/sms.php?username=923478543050&password=4932&sender=BrandName&mobile=923177371912&message=registrationdone";
+             string APIURL = "http://bulksms.com.pk/api/sms.php?username=923478543050&password=4932&sender=BrandName&mobile=" +S.Phone_no+ "&message=your registration done";
         
               using (var APIClient = new HttpClient())
               {
@@ -101,6 +101,10 @@ namespace DefaultProject1.Controllers
         [HttpPost]
         public IActionResult CreateAllStudent(string SearchByName, string SearchByRollNo, string SearchByDepartment)
         {
+           /* if (HttpContext.Session.GetString("LIUID") == null)
+            {
+                return RedirectToAction("Login");
+            }*/
             IList<Student> CreateAllStudent = ORM.Student.Where(m => m.Name.Contains(SearchByName) || m.RollNo.Contains(SearchByRollNo) || m.Department.Contains(SearchByDepartment)).ToList<Student>();
             return View(CreateAllStudent);
            // return View(ORM.Student.ToList<Student>());
@@ -195,7 +199,7 @@ namespace DefaultProject1.Controllers
             return Ad;
         }
 
-        public string showstudentdetail()
+       /* public string showstudentdetail()
         {
             string tb = "";
             var r = Request;
@@ -208,7 +212,64 @@ namespace DefaultProject1.Controllers
             }
 
             return tb;
+        }*/
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Login(LoginUser U)
+        {
+            LoginUser LU = ORM.LoginUser.Where(m => m.Email == U.Email && m.Password == U.Password).FirstOrDefault<LoginUser>();
+            if (LU == null)
+            {
+                ViewBag.Message = "Invalid User Name or Password";
+                return View();
+            }
+            HttpContext.Session.SetString("LIUID", LU.Id.ToString());
+            return RedirectToAction("CreateAllStudent");
+
         }
 
+        [HttpGet]
+        public IActionResult SignUp()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult SignUp(LoginUser U)
+        {
+            var userWithSameEmail = ORM.LoginUser.Where(m => m.Email == U.Email).SingleOrDefault(); //checking if the emailid already exits for any user
+            if (ModelState.IsValid)
+            {
+                if (userWithSameEmail == null)
+                {
+                    ORM.LoginUser.Add(U);
+                    ORM.SaveChanges();
+                    ViewBag.Message = "Registration Done";
+                    return RedirectToAction("CreateAllStudent");
+                }
+                else
+                {
+                    ViewBag.Message = "User with this Email Already Exist";
+                    return View("SignUp");
+                }
+            }
+
+            else
+            {
+                return View("CreateAllStudent");
+            }
+        }
+        public IActionResult LogOut()
+        {
+            HttpContext.Session.Clear();
+
+            return RedirectToAction("Login");
+        }
     }
 }

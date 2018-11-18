@@ -17,5 +17,7 @@ namespace DefaultProject1.Models
         public string Cv { get; set; }
         public string Phone_no { get; set; }
         public string Date_of_birth { get; set; }
+        public String CreatedBy { get; set; }
+
     }
 }

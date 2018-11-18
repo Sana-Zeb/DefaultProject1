@@ -16,7 +16,7 @@ namespace DefaultProject1.Models
         }
 
         public virtual DbSet<Student> Student { get; set; }
-        public virtual DbSet<Teacher> Teacher { get; set; }
+        public virtual DbSet<LoginUser> LoginUser { get; set; }
 
      /*   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -58,29 +58,28 @@ namespace DefaultProject1.Models
                 entity.Property(e => e.Subject).HasMaxLength(50);
             });
 
-            modelBuilder.Entity<Teacher>(entity =>
+            modelBuilder.Entity<LoginUser>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
 
-                entity.Property(e => e.Address).HasMaxLength(50);
+                entity.Property(e => e.FName)
+                 .HasColumnName("F_Name")
+                 .HasMaxLength(50);
 
-                entity.Property(e => e.Cv)
-                    .HasColumnName("CV")
-                    .HasMaxLength(250);
-
-                entity.Property(e => e.Department).HasMaxLength(50);
+                entity.Property(e => e.LName)
+                 .HasColumnName("L_Name")
+                 .HasMaxLength(50);
 
                 entity.Property(e => e.Email).HasMaxLength(50);
 
-                entity.Property(e => e.Name).HasMaxLength(50);
+                entity.Property(e => e.Password).HasMaxLength(50);
 
-                entity.Property(e => e.PhoneNo)
-                    .HasColumnName("Phone_No")
-                    .HasMaxLength(50);
+                entity.Property(e => e.Gender).HasMaxLength(50);
 
-                entity.Property(e => e.ProfilePicture)
-                    .HasColumnName("Profile_Picture")
-                    .HasMaxLength(250);
+                entity.Property(e => e.DOB).HasMaxLength(50);
+
+                entity.Property(e => e.country).HasMaxLength(50);
+
             });
         }
     }
